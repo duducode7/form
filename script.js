@@ -13,13 +13,21 @@ function atualizarContagem() {
     const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const mins = Math.floor((diff / (1000 * 60)) % 60);
 
-    document.getElementById("contador").innerHTML =
-        `${dias} dias • ${horas} horas • ${mins} minutos`;
+    const contador = document.getElementById("contador");
+    if (contador) {
+        contador.innerHTML = `${dias} dias • ${horas} horas • ${mins} minutos`;
+    }
 }
 
-setInterval(atualizarContagem, 1000);
-atualizarContagem();
+// Só inicia o contador se o elemento existir
+if (document.getElementById("contador")) {
+    setInterval(atualizarContagem, 1000);
+    atualizarContagem();
+}
 
+/* ===========================
+   Transições
+=========================== */
 function pageTransition() {
     const body = document.body;
     body.classList.add('page-transition');
@@ -42,3 +50,24 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+/* ===========================
+   Login
+=========================== */
+const loginForm = document.getElementById('loginForm');
+if (loginForm) {
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const user = document.getElementById('username').value.trim();
+        const pass = document.getElementById('password').value.trim();
+        const error = document.getElementById('loginError');
+
+        if (user === 'Eduardo' && pass === 'formatura') {
+            error.style.display = 'none';
+            window.location.href = 'index.html';
+        } else {
+            error.textContent = 'Usuário ou senha inválidos.';
+            error.style.display = 'block';
+        }
+    });
+}
