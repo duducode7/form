@@ -64,7 +64,7 @@ if (loginForm) {
 
         if (user === 'Eduardo' && pass === 'formatura') {
             error.style.display = 'none';
-            window.location.href = 'index.html';
+            window.location.href = 'inicio.html';
         } else {
             error.textContent = 'Usuário ou senha inválidos.';
             error.style.display = 'block';
